@@ -1,0 +1,65 @@
+﻿@using ZBC.ViewModels
+@{
+    ViewData["Title"] = "Product list";
+}
+
+@model List<DataTableViewModel>
+
+<table id="productTable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Model ID</th>            
+            <th>Product type</th>
+            <th>Laptop speed</th>
+            <th>Laptop RAM</th>
+            <th>Laptop hard disk</th>
+            <th>Laptop screen</th>
+            <th>PC speed</th>
+            <th>PC RAM</th>
+            <th>PC Hard disk</th>
+            <th>PC Read drive</th>
+            <th>Printer color</th>
+            <th>Printer type</th>
+            <th>Price</th>
+            <th>Maker ID</th>
+            <th>Maker color</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ModelID</td>                
+                <td>@item.Product_Type</td>
+                <td>@item.Laptop_Speed</td>
+                <td>@item.Laptop_RAM</td>
+                <td>@item.Laptop_HardDisk</td>
+                <td>@item.Laptop_Screen</td>
+                <td>@item.PC_Speed</td>
+                <td>@item.PC_RAM</td>
+                <td>@item.PC_HardDisk</td>
+                <td>@item.PC_ReadDrive</td>
+                <td>@item.Printer_Color</td>
+                <td>@item.Printer_Type</td>
+                <td>@item.Product_Price</td>
+                <td>@item.MakerID</td>
+                <td>@item.Maker_Color</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <style>
+        .no-wrap {
+            white-space: nowrap;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $('#productTable').DataTable({});
+            $('#productTable th, #productTable td').addClass('no-wrap');
+        });
+    </script>
+}

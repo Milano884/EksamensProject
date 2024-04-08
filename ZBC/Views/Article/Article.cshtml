@@ -1,0 +1,38 @@
+﻿@using ZBC.ViewModels
+
+@model Article
+
+@{
+    ViewData["Title"] = "Manage Articles";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-3">
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Article Form -->
+    <form id="articleForm" asp-action="Update" asp-controller="Article" method="post">
+        <input type="hidden" asp-for="ArticleId" />
+        <div class="form-group">
+            <label asp-for="ArticleTitle"></label>
+            <input asp-for="ArticleTitle" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ArticleDescription"></label>
+            <textarea asp-for="ArticleDescription" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="ArticleCategory"></label>
+            <input asp-for="ArticleCategory" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="PublicationDateTime"></label>
+            <input asp-for="PublicationDateTime" class="form-control" type="date" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form> 
+
+    <hr />
+</div>
+

@@ -1,0 +1,45 @@
+﻿@using ZBC.ViewModels
+
+@model List<Article>
+
+@{
+    ViewData["Title"] = "Manage Articles";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-3">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+   <!-- Articles List -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Published On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td>@article.ArticleTitle</td>
+                    <td>@article.ArticleDescription</td>
+                    <td>@article.ArticleCategory</td>
+                    <td>@article.PublicationDateTime.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-articleId="@article.ArticleId" class="btn btn-info edit-btn" data-id="@article.ArticleId">Edit</a>
+                        <a asp-action="Delete" asp-route-articleId="@article.ArticleId" class="btn btn-danger delete-btn" data-id="@article.ArticleId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="NewArticle" asp-controller="Article" class="btn btn-info edit-btn">New</a>
+</div>
+

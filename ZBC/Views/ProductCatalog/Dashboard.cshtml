@@ -1,0 +1,183 @@
+﻿@using ZBC.ViewModels
+@{
+    ViewData["Title"] = "Products";
+}
+
+@model IEnumerable<DashboardViewModel>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+<div class="content">
+    <div class="content__header">
+        <nav class="mt-1" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+        </nav>
+        <hr class="mt-0">
+    </div>
+    <div class="content__body">
+        <div class="col-12 col-md-12 pb-6">
+            <div class="form-floating">
+                <canvas id="myPieChart" style="max-width: 100%; height: 600px; max-height:600px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var data = @Html.Raw(Json.Serialize(Model));
+
+        const labels = data.map(item => item.makerID);
+        const datasetData = data.map(item => item.productCount);
+        const backgroundColors = data.map(item => item.makerColor); 
+
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        const datasets = data.reduce((acc, curr) => {
+            const productTypeIndex = acc.findIndex(dataset => dataset.label === curr.productType);
+            if (productTypeIndex === -1) {
+                acc.push({
+                    label: curr.productType,
+                    data: [curr.productCount],
+                    backgroundColor: [curr.makerColor],
+                    hoverOffset: 4
+                });
+            } else {
+                acc[productTypeIndex].data.push(curr.productCount);
+                acc[productTypeIndex].backgroundColor.push(curr.makerColor);
+            }
+            return acc;
+        }, []);
+
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: datasets
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+@* @section Scripts {
+    <script type="text/javascript"> 
+        // var data = @Html.Raw(Json.Serialize(Model));
+
+        // var processedData = data.reduce((acc, curr) => {
+        //     const productTypeIndex = acc.findIndex(item => item.productType === curr.productType);
+        //     if (productTypeIndex === -1) {
+        //         acc.push({
+        //             productType: curr.productType,
+        //             productCount: curr.productCount,
+        //             makerColor: curr.makerColor // Use the first encountered color
+        //         });
+        //     } else {
+        //         // Aggregate productCounts, but do not alter the already chosen makerColor
+        //         acc[productTypeIndex].productCount += curr.productCount;
+        //     }
+        //     return acc;
+        // }, []);
+
+        // // Now create your labels, datasetData, and backgroundColors arrays
+        // const labels = processedData.map(item => item.productType);
+        // const datasetData = processedData.map(item => item.productCount);
+        // const backgroundColors = processedData.map(item => item.makerColor);
+
+        // var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        // const chart = new Chart(ctx, {
+        //     type: 'pie',
+        //     data: {
+        //         labels: labels, // Labels for each productType
+        //         datasets: [{
+        //             data: datasetData, // Aggregated productCounts
+        //             backgroundColor: backgroundColors, // Representative backgroundColors
+        //             hoverOffset: 4
+        //         }]
+        //     },
+        //     options: {
+        //         plugins: {
+        //             tooltip: {
+        //                 callbacks: {
+        //                     label: function (context) {
+        //                         var label = labels[context.dataIndex] || '';
+        //                         if (label) {
+        //                             label += ': ';
+        //                         }
+        //                         label += context.parsed;
+        //                         return label;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
+
+     </script>
+}  *@
+
+@* @section Scripts {
+    <script type="text/javascript">
+        var data = @Html.Raw(Json.Serialize(Model));
+
+        const labels = data.map(item => item.productType);
+        const backgroundColors = data.map(item => item.makerColor);
+
+        const datasetData = data.map(item => item.productCount);
+
+        var ctx = document.getElementById('myPieChart').getContext('2d');
+
+        const chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels, 
+                datasets: [{
+                    label: "Product Count",
+                    data: datasetData,
+                    backgroundColor: backgroundColors,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', 
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += context.parsed;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+} *@
