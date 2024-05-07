@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-ZBC-d112b82f-6dbf-41db-8ba2-f07f18fcde77</UserSecretsId>
+    <UserSecretsId>aspnet-Finanstilsynet-d112b82f-6dbf-41db-8ba2-f07f18fcde77</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
