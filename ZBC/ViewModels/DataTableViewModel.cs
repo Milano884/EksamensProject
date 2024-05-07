@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.Elfie.Serialization;
-using ZBC.Models;
+using Finanstilsynet.Models;
 
-namespace ZBC.ViewModels
+namespace Finanstilsynet.ViewModels
 {
     public class DataTableViewModel
     {

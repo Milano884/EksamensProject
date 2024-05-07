@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace ZBC.Areas.Identity.Pages.Account.Manage
+namespace Finanstilsynet.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {

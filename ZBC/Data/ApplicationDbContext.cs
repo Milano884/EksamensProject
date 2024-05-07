@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ZBC.Data
+namespace Finanstilsynet.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

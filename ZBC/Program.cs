@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ZBC.Data;
-using ZBC.Models;
-using ZBC.Repository;
-using ZBC.Repository.Interfaces;
+using Finanstilsynet.Data;
+using Finanstilsynet.Models;
+using Finanstilsynet.Repository;
+using Finanstilsynet.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ZBCDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<FinanstilsynetDBContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddSingleton<IGetData, GetData>();
 builder.Services.AddSingleton<IAddData, AddData>();
 builder.Services.AddSingleton<IUpdateData, UpdateData>();

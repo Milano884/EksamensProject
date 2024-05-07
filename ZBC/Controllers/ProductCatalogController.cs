@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using ZBC.Models;
-using ZBC.Repository.Interfaces;
+using Finanstilsynet.Models;
+using Finanstilsynet.Repository.Interfaces;
 
-namespace ZBC.Controllers
+namespace Finanstilsynet.Controllers
 {
     public class ProductCatalogController : Controller
     {

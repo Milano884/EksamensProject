@@ -1,6 +1,6 @@
-﻿using ZBC.Models;
+﻿using Finanstilsynet.Models;
 
-namespace ZBC.ViewModels
+namespace Finanstilsynet.ViewModels
 {
     public class ArticleViewModel
     {

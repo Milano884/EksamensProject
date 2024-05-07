@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace ZBC.Data.Migrations
+namespace Finanstilsynet.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

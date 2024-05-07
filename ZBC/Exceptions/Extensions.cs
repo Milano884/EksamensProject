@@ -1,4 +1,4 @@
-﻿namespace ZBC.Exceptions
+﻿namespace Finanstilsynet.Exceptions
 {
     public static class Extensions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ZBC.Models;
+namespace Finanstilsynet.Models;
 
 public partial class Product
 {

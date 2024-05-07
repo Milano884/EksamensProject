@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ZBC.Data;
-using ZBC.Models;
-using ZBC.Repository.Interfaces;
+using Finanstilsynet.Data;
+using Finanstilsynet.Models;
+using Finanstilsynet.Repository.Interfaces;
 
-namespace ZBC.Repository
+namespace Finanstilsynet.Repository
 {
     public class DeleteData : IDeleteData
     {
@@ -17,7 +17,7 @@ namespace ZBC.Repository
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
                 var article = await dbContext.Articles.FindAsync(articleID);
                 if (article != null)
                 {

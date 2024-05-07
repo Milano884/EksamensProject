@@ -1,4 +1,4 @@
-﻿namespace ZBC.Models;
+﻿namespace Finanstilsynet.Models;
 
 public partial class Maker
 {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ZBC.Models;
-using ZBC.ViewModels;
+using Finanstilsynet.Models;
+using Finanstilsynet.ViewModels;
 
-namespace ZBC.Repository.Interfaces
+namespace Finanstilsynet.Repository.Interfaces
 {
     public interface IGetData
     {

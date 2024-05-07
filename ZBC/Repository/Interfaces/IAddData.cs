@@ -1,6 +1,6 @@
-﻿using ZBC.Models;
+﻿using Finanstilsynet.Models;
 
-namespace ZBC.Repository.Interfaces
+namespace Finanstilsynet.Repository.Interfaces
 {
     public interface IAddData
     {

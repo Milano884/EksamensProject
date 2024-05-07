@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using ZBC.Models;
-using ZBC.Repository.Interfaces;
+using Finanstilsynet.Models;
+using Finanstilsynet.Repository.Interfaces;
 
-namespace ZBC.Controllers
+namespace Finanstilsynet.Controllers
 {
     [Authorize]
     public class ArticleController : Controller

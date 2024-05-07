@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using ZBC.Data;
-using ZBC.Models;
-using ZBC.Repository.Interfaces;
-using ZBC.ViewModels;
+using Finanstilsynet.Data;
+using Finanstilsynet.Models;
+using Finanstilsynet.Repository.Interfaces;
+using Finanstilsynet.ViewModels;
 
-namespace ZBC.Repository
+namespace Finanstilsynet.Repository
 {
     public class GetData : IGetData
     {
@@ -20,7 +20,7 @@ namespace ZBC.Repository
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
                 return await dbContext.Articles.AnyAsync(a => a.ArticleId == articleId);
             }
         }
@@ -29,7 +29,7 @@ namespace ZBC.Repository
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
                 return await dbContext.Articles.FirstOrDefaultAsync(a => a.ArticleId == articleID);
             }
         }
@@ -38,7 +38,7 @@ namespace ZBC.Repository
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
                 
                 return await dbContext.Articles.ToListAsync();
             }
@@ -48,7 +48,7 @@ namespace ZBC.Repository
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
 
                 var query = dbContext.Products.Include(x=>x.Maker).Select(p => new DataTableViewModel
                 {
@@ -77,7 +77,7 @@ namespace ZBC.Repository
         public async Task<List<DashboardViewModel>> GetProductCatalogByMakerAsync()
         {
             var scope = _serviceScopeFactory.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+            var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
 
             var query = from p in dbContext.Products
                         join m in dbContext.Makers on p.MakerId equals m.MakerId
@@ -97,7 +97,7 @@ namespace ZBC.Repository
         public async Task<List<Product>> GetAllProductsAsync()
         {
             var scope = _serviceScopeFactory.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<ZBCDBContext>();
+            var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
 
             return await dbContext.Products
                 .Include(p => p.Laptop) 

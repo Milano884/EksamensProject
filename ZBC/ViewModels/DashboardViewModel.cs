@@ -1,4 +1,4 @@
-﻿namespace ZBC.ViewModels
+﻿namespace Finanstilsynet.ViewModels
 {
     public class DashboardViewModel
     {

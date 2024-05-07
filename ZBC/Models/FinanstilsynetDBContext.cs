@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ZBC.Models;
+namespace Finanstilsynet.Models;
 
-public partial class ZBCDBContext : DbContext
+public partial class FinanstilsynetDBContext : DbContext
 {
-    public ZBCDBContext()
+    public FinanstilsynetDBContext()
     {
     }
 
-    public ZBCDBContext(DbContextOptions<ZBCDBContext> options)
+    public FinanstilsynetDBContext(DbContextOptions<FinanstilsynetDBContext> options)
         : base(options)
     {
     }
