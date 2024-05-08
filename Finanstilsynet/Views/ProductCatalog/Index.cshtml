@@ -5,31 +5,38 @@
 
 @model List<DataTableViewModel>
 
+<div class="mb-3">
+    <!-- Optional: Create New Product Button -->
+    <a asp-action="Create" class="btn btn-success">Create New Product</a>
+</div>
+
 <table id="productTable" class="display" style="width:100%">
     <thead>
         <tr>
-            <th>Model ID</th>            
-            <th>Product type</th>
-            <th>Laptop speed</th>
+            <th>Model ID</th>
+            <th>Product Type</th>
+            <th>Laptop Speed</th>
             <th>Laptop RAM</th>
-            <th>Laptop hard disk</th>
-            <th>Laptop screen</th>
-            <th>PC speed</th>
+            <th>Laptop Hard Disk</th>
+            <th>Laptop Screen</th>
+            <th>PC Speed</th>
             <th>PC RAM</th>
-            <th>PC Hard disk</th>
-            <th>PC Read drive</th>
-            <th>Printer color</th>
-            <th>Printer type</th>
+            <th>PC Hard Disk</th>
+            <th>PC Read Drive</th>
+            <th>Printer Color</th>
+            <th>Printer Type</th>
             <th>Price</th>
             <th>Maker ID</th>
-            <th>Maker color</th>
+            <th>Maker Color</th>
+            <!-- Add an Action column for Edit and Delete buttons -->
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.ModelID</td>                
+                <td>@item.ModelID</td>
                 <td>@item.Product_Type</td>
                 <td>@item.Laptop_Speed</td>
                 <td>@item.Laptop_RAM</td>
@@ -44,6 +51,12 @@
                 <td>@item.Product_Price</td>
                 <td>@item.MakerID</td>
                 <td>@item.Maker_Color</td>
+                <!-- Adding Edit and Delete buttons -->
+                <td>
+                    <a asp-action="Edit" asp-route-modelId="@item.ModelID" class="btn btn-info edit-btn">Edit</a>
+                    <a asp-action="Delete" asp-route-modelId="@item.ModelID" class="btn btn-danger delete-btn"
+                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
@@ -58,7 +71,12 @@
 
     <script type="text/javascript">
         $(document).ready(() => {
-            $('#productTable').DataTable({});
+            $('#productTable').DataTable({
+                "columnDefs": [{
+                    "targets": -1,  // Last column (Actions) should not be sortable
+                    "orderable": false
+                }]
+            });
             $('#productTable th, #productTable td').addClass('no-wrap');
         });
     </script>
