@@ -1,9 +1,9 @@
+using Finanstilsynet.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Finanstilsynet.Data;
-using Finanstilsynet.Models;
-using Finanstilsynet.Repository;
-using Finanstilsynet.Repository.Interfaces;
+using Models;
+using Repository;
+using Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

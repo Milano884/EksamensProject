@@ -1,6 +1,6 @@
-﻿using Finanstilsynet.Models;
+﻿using Models;
 
-namespace Finanstilsynet.ViewModels
+namespace ViewModels
 {
     public class ArticleViewModel
     {

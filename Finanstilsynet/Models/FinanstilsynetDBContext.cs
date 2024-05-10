@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Finanstilsynet.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finanstilsynet.Models;
+namespace Models;
 
 public partial class FinanstilsynetDBContext : DbContext
 {

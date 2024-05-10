@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using Finanstilsynet.Data;
-using Finanstilsynet.Models;
-using Finanstilsynet.Repository.Interfaces;
-using Finanstilsynet.ViewModels;
+using Models;
+using Repository.Interfaces;
+using ViewModels;
 
-namespace Finanstilsynet.Repository
+namespace Repository
 {
     public class GetData : IGetData
     {
@@ -44,13 +42,13 @@ namespace Finanstilsynet.Repository
             }
         }
 
-        public async Task<List<DataTableViewModel>> GetProductCatalogAsync()
+        public async Task<List<ProductViewModel>> GetProductCatalogAsync()
         {
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
 
-                var query = dbContext.Products.Include(x=>x.Maker).Select(p => new DataTableViewModel
+                var query = dbContext.Products.Include(x=>x.Maker).Select(p => new ProductViewModel
                 {
                     ModelID = p.ModelId,
                     MakerID = p.MakerId,
@@ -69,7 +67,7 @@ namespace Finanstilsynet.Repository
                     Maker_Color = p.Maker.MakerColor
                 });
 
-                List<DataTableViewModel> productCatalog = await query.ToListAsync();
+                List<ProductViewModel> productCatalog = await query.ToListAsync();
                 return productCatalog;
             }
         }
@@ -106,5 +104,38 @@ namespace Finanstilsynet.Repository
                 .Include(p => p.Maker)
                 .ToListAsync();
         }
+
+        public async Task<Pc> GetProductByModelIDAsync(int modelID)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
+
+                var product = await dbContext.Products
+                                             .Include(p => p.Laptop)
+                                             .Include(p => p.Pc)
+                                             .Include(p => p.Printer)
+                                             .Include(p => p.Maker)
+                                             .FirstOrDefaultAsync(p => p.ModelId == modelID);
+
+                if (product == null)
+                {
+                    return null; 
+                }
+
+                var productViewModel = new Pc
+                {
+                    ModelId = product.ModelId,
+                    Speed = product.Pc?.Speed,
+                    Ram = product.Pc?.Ram,
+                    HardDisk = product.Pc?.HardDisk,
+                    ReadDrive = product.Pc?.ReadDrive,
+                    Price = product.Pc?.Price ?? product.Printer?.Price ?? product.Laptop?.Price,
+                };
+
+                return productViewModel;
+            }
+        }
+
     }
 }

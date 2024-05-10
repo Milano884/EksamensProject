@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Finanstilsynet.Models;
 
-namespace Finanstilsynet.Models;
+namespace Models;
 
 public partial class AspNetUser
 {

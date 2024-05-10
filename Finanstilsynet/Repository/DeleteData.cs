@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Finanstilsynet.Data;
-using Finanstilsynet.Models;
-using Finanstilsynet.Repository.Interfaces;
+using Models;
+using Repository;
+using Repository.Interfaces;
 
-namespace Finanstilsynet.Repository
+namespace Repository
 {
     public class DeleteData : IDeleteData
     {
@@ -22,6 +22,27 @@ namespace Finanstilsynet.Repository
                 if (article != null)
                 {
                     dbContext.Articles.Remove(article);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+        }
+
+        public async Task ProductAsync(int modelID)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
+
+                var pc = await dbContext.Pcs.FindAsync(modelID);
+
+
+                var product = await dbContext.Products.FindAsync(modelID);
+                if (product != null)
+                {
+                    dbContext.Pcs.Remove(pc);
+                    await dbContext.SaveChangesAsync();
+
+                    dbContext.Products.Remove(product);
                     await dbContext.SaveChangesAsync();
                 }
             }

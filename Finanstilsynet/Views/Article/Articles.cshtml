@@ -1,4 +1,4 @@
-﻿@using Finanstilsynet.ViewModels
+﻿@using Models
 
 @model List<Article>
 
@@ -12,7 +12,6 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
 
-   <!-- Articles List -->
     <table class="table">
         <thead>
             <tr>
@@ -42,4 +41,3 @@
 
     <a asp-action="NewArticle" asp-controller="Article" class="btn btn-info edit-btn">New</a>
 </div>
-

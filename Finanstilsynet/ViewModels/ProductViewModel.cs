@@ -1,9 +1,6 @@
-﻿using Microsoft.CodeAnalysis.Elfie.Serialization;
-using Finanstilsynet.Models;
-
-namespace Finanstilsynet.ViewModels
+﻿namespace ViewModels
 {
-    public class DataTableViewModel
+    public class ProductViewModel
     {
         public int ModelID { get; set; }
         public string MakerID { get; set; }
@@ -11,7 +8,7 @@ namespace Finanstilsynet.ViewModels
         public int? Laptop_Speed { get; set; }
         public int? Laptop_RAM { get; set; }
         public int? Laptop_HardDisk { get; set; }
-        public int? Laptop_Screen { get; set; }
+        public decimal? Laptop_Screen { get; set; }
         public int? PC_Speed { get; set; }
         public int? PC_RAM { get; set; }
         public int? PC_HardDisk { get; set; }

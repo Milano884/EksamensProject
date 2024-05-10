@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Finanstilsynet.Data;
-using Finanstilsynet.Models;
-using Finanstilsynet.Repository.Interfaces;
+using Models;
+using Repository.Interfaces;
 
-namespace Finanstilsynet.Repository
+namespace Repository
 {
     public class UpdateData : IUpdateData
     {
@@ -23,6 +22,22 @@ namespace Finanstilsynet.Repository
                 if (existingArticle != null)
                 {
                     dbContext.Entry(existingArticle).CurrentValues.SetValues(article);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+        }
+
+        public async Task UpdatePcAsync(Pc pc)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<FinanstilsynetDBContext>();
+
+                var existingPc = await dbContext.Pcs.FirstOrDefaultAsync(a => a.ModelId == pc.ModelId);
+                if (existingPc != null)
+                {
+                    dbContext.Entry(existingPc).CurrentValues.SetValues(pc);
+                    dbContext.Entry(existingPc).State = EntityState.Modified;
                     await dbContext.SaveChangesAsync();
                 }
             }

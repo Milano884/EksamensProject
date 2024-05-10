@@ -1,0 +1,51 @@
+﻿@using ViewModels
+
+@model List<ProductViewModel>
+
+@{
+    ViewData["Title"] = "Manage Personal computers";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <table id="productTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Model ID</th>
+                <th>Maker ID</th>
+                <th>Printer Type</th>
+                <th>PC Speed</th>
+                <th>PC RAM</th>
+                <th>PC Hard Disk</th>
+                <th>PC Read Drive</th>           
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Product_Type.Trim().Equals("pc", StringComparison.OrdinalIgnoreCase))
+                {                                  
+                    <tr>
+                        <td>@item.ModelID</td>
+                        <td>@item.MakerID</td>
+                        <td>@item.Product_Type</td>
+                        <td>@item.PC_Speed</td>
+                        <td>@item.PC_RAM</td>
+                        <td>@item.PC_HardDisk</td>
+                        <td>@item.PC_ReadDrive</td>
+                        <td>@item.Product_Price</td>
+                        <td>
+                            <a asp-action="EditPersonalComputer" asp-route-modelID="@item.ModelID" class="btn btn-info edit-btn" data-id="@item.ModelID">Edit</a>
+                            <a asp-action="DeletePersonalComputer" asp-route-modelID="@item.ModelID" class="btn btn-danger delete-btn" data-id="@item.ModelID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="NewPersonalComputer" asp-controller="ProductCatalog" class="btn btn-success">New</a>
+</div>

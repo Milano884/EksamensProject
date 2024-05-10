@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Models;
+using Repository.Interfaces;
 using System.Diagnostics;
-using Finanstilsynet.Models;
-using Finanstilsynet.Repository.Interfaces;
 
-namespace Finanstilsynet.Controllers
+namespace Controllers
 {
     [Authorize]
     public class ArticleController : Controller
@@ -82,6 +81,7 @@ namespace Finanstilsynet.Controllers
             var model = new Article{ PublicationDateTime = DateTime.Today };
             return View(model);
         }
+
         [HttpPost]
         public async Task<IActionResult> SaveNewArticle([FromForm] Article article)
         {
@@ -93,6 +93,7 @@ namespace Finanstilsynet.Controllers
             await _addData.AddArticleAsync(article);
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> Delete(int? articleId)
         {
             if (articleId == null)

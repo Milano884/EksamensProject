@@ -1,9 +1,9 @@
-﻿using Finanstilsynet.Models;
-
-namespace Finanstilsynet.Repository.Interfaces
+﻿namespace Repository.Interfaces
 {
     public interface IDeleteData
     {
         Task ArticleAsync(int articleID);
+
+        Task ProductAsync(int modelID);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Finanstilsynet.Models;
+﻿using Models;
+
+namespace Finanstilsynet.Models;
 
 public partial class Maker
 {

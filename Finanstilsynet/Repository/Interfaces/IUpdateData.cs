@@ -1,9 +1,11 @@
-﻿using Finanstilsynet.Models;
+﻿using Models;
 
-namespace Finanstilsynet.Repository.Interfaces
+namespace Repository.Interfaces
 {
     public interface IUpdateData
     {
         Task UpdateArticleAsync(Article article);
+
+        Task UpdatePcAsync(Pc pc);
     }
 }

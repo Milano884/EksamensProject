@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Finanstilsynet.Models;
-using Finanstilsynet.ViewModels;
+﻿using Models;
+using ViewModels;
 
-namespace Finanstilsynet.Repository.Interfaces
+namespace Repository.Interfaces
 {
     public interface IGetData
     {
@@ -10,7 +9,8 @@ namespace Finanstilsynet.Repository.Interfaces
         Task<Article> GetArticleByIdAsync(int articleID);
         Task<List<Article>> GetAllArticlesAsync();
         Task<List<Product>> GetAllProductsAsync();
-        Task<List<DataTableViewModel>> GetProductCatalogAsync();
+        Task<List<ProductViewModel>> GetProductCatalogAsync();
         Task<List<DashboardViewModel>> GetProductCatalogByMakerAsync();
+        Task<Pc> GetProductByModelIDAsync(int modelID);
     }
 }

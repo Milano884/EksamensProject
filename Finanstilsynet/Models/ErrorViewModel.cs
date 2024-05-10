@@ -1,4 +1,4 @@
-namespace Finanstilsynet.Models
+namespace Models
 {
     public class ErrorViewModel
     {
