@@ -1,0 +1,47 @@
+﻿@using ViewModels
+
+@model List<ProductViewModel>
+
+@{
+    ViewData["Title"] = "Manage Printers";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <table id="productTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Model ID</th>
+                <th>Maker ID</th>
+                <th>Printer Type</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Product_Type.Trim().Equals("printer", StringComparison.OrdinalIgnoreCase))
+                {
+                    <tr>
+                        <td>@item.ModelID</td>
+                        <td>@item.MakerID</td>
+                        <td>@item.Product_Type</td>
+                        <td>@item.Printer_Type</td>
+                        <td>@item.Product_Price</td>
+                        <td>@item.Printer_Color</td>
+                        <td>
+                            <a asp-action="EditPrinter" asp-route-modelID="@item.ModelID" class="btn btn-info edit-btn" data-id="@item.ModelID">Edit</a>
+                            <a asp-action="DeletePrinter" asp-route-modelID="@item.ModelID" class="btn btn-danger delete-btn" data-id="@item.ModelID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="NewPrinter" asp-controller="ProductCatalog" class="btn btn-success">New</a>
+</div>

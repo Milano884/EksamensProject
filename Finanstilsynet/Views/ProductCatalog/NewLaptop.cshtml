@@ -1,9 +1,9 @@
-@using Models
+﻿@using Models
 
-@model Pc
+@model Laptop
 
 @{
-    ViewData["Title"] = "New personal computer";
+    ViewData["Title"] = "New Laptop";
 }
 
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -11,37 +11,30 @@
 <div class="container mt-3">
     <h2>@ViewData["Title"]</h2>
 
-    <form id="personalComputerForm" asp-action="SaveNewPersonalComputer" asp-controller="ProductCatalog" method="post">
+    <form id="personalComputerForm" asp-action="SaveNewLaptop" asp-controller="ProductCatalog" method="post">
         <div class="form-group">
             <label asp-for="ModelId">Model ID</label>
             <input asp-for="ModelId" class="form-control" disabled />
+            <input type="hidden" asp-for="ModelId" />
         </div>
         <div class="form-group">
-            <label>Maker ID</label>
-            <input value="A" class="form-control" disabled />
-        </div>
-        <div class="form-group">
-            <label>Printer type</label>
-            <input value="pc" class="form-control" disabled />
-        </div>
-        <div class="form-group">
-            <label asp-for="Speed"></label>
+            <label asp-for="Speed">PC speed</label>
             <input asp-for="Speed" class="form-control" type="number" />
         </div>
         <div class="form-group">
-            <label asp-for="Ram"></label>
+            <label asp-for="Ram">PC RAM</label>
             <input asp-for="Ram" class="form-control" type="number" />
         </div>
         <div class="form-group">
-            <label asp-for="HardDisk"></label>
+            <label asp-for="HardDisk">Laptop hard disk</label>
             <input asp-for="HardDisk" class="form-control" type="number" />
         </div>
         <div class="form-group">
-            <label asp-for="ReadDrive"></label>
-            <input asp-for="ReadDrive" class="form-control" />
+            <label asp-for="Screen">Laptop screen</label>
+            <input asp-for="Screen" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="Price"></label>
+            <label asp-for="Price">Price</label>
             <input asp-for="Price" class="form-control" type="number" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

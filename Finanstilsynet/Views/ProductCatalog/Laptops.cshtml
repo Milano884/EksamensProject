@@ -1,0 +1,48 @@
+﻿@using ViewModels
+
+@model List<ProductViewModel>
+
+@{
+    ViewData["Title"] = "Manage Laptops";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <table id="productTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Model ID</th>
+                <th>Laptop Speed</th>
+                <th>Laptop RAM</th>
+                <th>Laptop Hard Disk</th>
+                <th>Screen</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.Product_Type.Trim().Equals("laptop", StringComparison.OrdinalIgnoreCase))
+                {
+                    <tr>
+                        <td>@item.ModelID</td>
+                        <td>@item.Laptop_Speed</td>
+                        <td>@item.Laptop_RAM</td>
+                        <td>@item.Laptop_HardDisk</td>
+                        <td>@item.PC_HardDisk</td>
+                        <td>@item.Laptop_Screen</td>
+                        <td>@item.Product_Price</td>
+                        <td>
+                            <a asp-action="EditLaptop" asp-route-modelID="@item.ModelID" class="btn btn-info edit-btn" data-id="@item.ModelID">Edit</a>
+                            <a asp-action="DeleteLaptop" asp-route-modelID="@item.ModelID" class="btn btn-danger delete-btn" data-id="@item.ModelID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="NewLaptop" asp-controller="ProductCatalog" class="btn btn-success">New</a>
+</div>

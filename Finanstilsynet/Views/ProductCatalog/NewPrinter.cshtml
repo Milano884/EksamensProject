@@ -1,0 +1,42 @@
+﻿@using Models
+
+@model Printer
+
+@{
+    ViewData["Title"] = "New printer";
+}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-3">
+    <h2>@ViewData["Title"]</h2>
+
+    <form id="personalComputerForm" asp-action="SaveNewPrinter" asp-controller="ProductCatalog" method="post">
+        <div class="form-group">
+            <label asp-for="ModelId">Model ID</label>
+            <input asp-for="ModelId" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label>Maker ID</label>
+            <input value="A" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label>Printer type</label>
+            <input asp-for="Color" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Model">Product Model</label>
+            <input asp-for="Model" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Price</label>
+            <input asp-for="Price" class="form-control" type="number" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Color">Color</label>
+            <input asp-for="Color" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <hr />
+</div>
